@@ -14,6 +14,10 @@ exports.getDirectoryContents = async (directory, fileTypeFilter, sort) => {
 
     // Handle Directory
     if (stat.isDirectory()) {
+      // skip dir starts with '.' or '@'
+      if (file.startsWith('.') || file.startsWith('@')) {
+        continue;
+      }
       rt.directories.push({ name: file });
       continue;
     }

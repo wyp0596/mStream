@@ -90,6 +90,11 @@ async function run() {
 }
 
 async function recursiveScan(dir) {
+  // skip scan dir starts with '.' or '@'
+  if (dir.startsWith('.') || dir.startsWith('@')) {
+    console.error(`Warning: skip to scan dir ${dir}`);
+    return;
+  }
   try {
     var files = fs.readdirSync(dir);
   } catch (err) {
